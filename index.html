@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<!-- TO DO LIST | Built by Sehansa Rithmini Bomulla | CodeAlpha Internship 2026 -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To-Do List | CodeAlpha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="todo-style.css"/>
+</head>
+<body>
+  <div class="noise"></div>
+  <main class="container">
+    <header>
+      <div class="badge">CodeAlpha · Task 2</div>
+      <h1>My <span class="accent">Tasks</span></h1>
+      <div class="stats">
+        <span id="total-count">0 tasks</span>
+        <span class="dot">·</span>
+        <span id="done-count">0 done</span>
+      </div>
+    </header>
+
+    <!-- Add Task -->
+    <div class="add-bar">
+      <input type="text" id="task-input" placeholder="Add a new task..." maxlength="120" autocomplete="off"/>
+      <select id="priority-select" title="Priority">
+        <option value="low">🟢 Low</option>
+        <option value="medium" selected>🟡 Medium</option>
+        <option value="high">🔴 High</option>
+      </select>
+      <button id="add-btn" onclick="addTask()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </button>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all"    onclick="setFilter('all')">All</button>
+      <button class="filter-btn"        data-filter="active" onclick="setFilter('active')">Active</button>
+      <button class="filter-btn"        data-filter="done"   onclick="setFilter('done')">Completed</button>
+      <button class="clear-btn" onclick="clearCompleted()">Clear done</button>
+    </div>
+
+    <!-- Task List -->
+    <ul id="task-list"></ul>
+
+    <div id="empty-state" class="empty-state">
+      <div class="empty-icon">📋</div>
+      <p>No tasks yet. Add one above!</p>
+    </div>
+  </main>
+
+  <!-- Edit Modal -->
+  <div id="modal-overlay" class="modal-overlay hidden" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <h3>Edit Task</h3>
+      <input type="text" id="edit-input" maxlength="120"/>
+      <select id="edit-priority">
+        <option value="low">🟢 Low</option>
+        <option value="medium">🟡 Medium</option>
+        <option value="high">🔴 High</option>
+      </select>
+      <div class="modal-btns">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-save"   onclick="saveEdit()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="todo-script.js"></script>
+</body>
+</html>
